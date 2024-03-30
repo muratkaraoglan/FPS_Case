@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Player Stat
   m_EditorClassIdentifier: 
   baseMovementSpeed: 10
-  movementSpeedIncreaseAmount: 10
   baseSprintSpeed: 15
-  baseJumpSpeed: 300
-  baseHealth: 0
+  movementSpeedIncreaseAmount: 10
   movementSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -41,3 +39,59 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  baseJumpSpeed: 300
+  jumpSpeedIncreaseAmount: 10
+  jumpSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  baseHealth: 100
+  healthIncreaseAmount: 10
+  healthCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  walkAndSprintTalent: {fileID: 11400000, guid: 15361444a84dea048ad42949271af882,
+    type: 2}
+  jumpTalent: {fileID: 11400000, guid: 992f5262907de5142b7e7445841ae26d, type: 2}
+  healthTalent: {fileID: 11400000, guid: d6417e1ff74068a4d8a80bda02f98f38, type: 2}

@@ -10,8 +10,8 @@ public abstract class BaseGunController : MonoBehaviour
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected float fireDelay;
     [SerializeField] protected Transform firePoint;
-
-    protected int capacity;
+    [SerializeField] protected ParticleSystem muzzleParticle;
+    protected int currentCapacity;
     protected float nextFireTime;
     public abstract void Fire();
 }

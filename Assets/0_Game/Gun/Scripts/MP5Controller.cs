@@ -10,6 +10,7 @@ public class MP5Controller : BaseGunController
         {
             nextFireTime = Time.time + fireDelay;
             animator.Play(StringHelper.FIRE, -1, 0);
+            muzzleParticle.Play();
         }
     }
 }

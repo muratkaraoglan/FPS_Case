@@ -539,6 +539,107 @@ MonoBehaviour:
   baseGunController: {fileID: 5866666019857642076}
   <PlayerStats>k__BackingField: {fileID: 11400000, guid: f8559f61da1a0434382407f3a3457fa6,
     type: 2}
+--- !u!1001 &536515239
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1357160563}
+    m_Modifications:
+    - target: {fileID: 958698486869619181, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487037618295, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533120, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_Name
+      value: MuzzleFlashFX_Rifle 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 958698487610533124, guid: 68e4da45872a73d42963165de613c356,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68e4da45872a73d42963165de613c356, type: 3}
+--- !u!4 &536515240 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 958698487610533121, guid: 68e4da45872a73d42963165de613c356,
+    type: 3}
+  m_PrefabInstance: {fileID: 536515239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &536515241 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 958698487610533124, guid: 68e4da45872a73d42963165de613c356,
+    type: 3}
+  m_PrefabInstance: {fileID: 536515239}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &592918816
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +877,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1357160562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357160563}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357160563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357160562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0449, y: 1.522, z: 0.3324}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 536515240}
+  m_Father: {fileID: 8879528568505120959}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1774643255
 GameObject:
@@ -2831,7 +2964,8 @@ MonoBehaviour:
   bulletDamage: 0
   bulletSpeed: 0
   fireDelay: 0.1
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1357160563}
+  muzzleParticle: {fileID: 536515241}
 --- !u!1 &5906518559847559586
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,6 +3920,7 @@ Transform:
   - {fileID: 5478879449688288381}
   - {fileID: 4297758929437383329}
   - {fileID: 6523189874548755249}
+  - {fileID: 1357160563}
   m_Father: {fileID: 543450651641112609}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

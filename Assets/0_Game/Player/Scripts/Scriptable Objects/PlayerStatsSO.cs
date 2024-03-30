@@ -5,25 +5,50 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Player Stat", menuName = "Scriptable Objects/Player Stat", order = 1)]
 public class PlayerStatsSO : ScriptableObject
 {
-    [SerializeField] private float baseMovementSpeed;
-    [SerializeField] private float movementSpeedIncreaseAmount;
-    [SerializeField] private float baseSprintSpeed;
-    [SerializeField] private float baseJumpSpeed;
-    [SerializeField] private float baseHealth;
+    [Header("Speed Parameters")]
+    [SerializeField, Min(10)] private float baseMovementSpeed;
+    [SerializeField, Min(12)] private float baseSprintSpeed;
+    [SerializeField, Min(1)] private float movementSpeedIncreaseAmount;
     [SerializeField] private AnimationCurve movementSpeedCurve;
+    [Header("Jump Parameters")]
+    [SerializeField, Min(300)] private float baseJumpSpeed;
+    [SerializeField, Min(1)] private float jumpSpeedIncreaseAmount;
+    [SerializeField] private AnimationCurve jumpSpeedCurve;
+    [Header("Health Parameters")]
+    [SerializeField] private float baseHealth;
+    [SerializeField] private float healthIncreaseAmount;
+    [SerializeField] private AnimationCurve healthCurve;
+    [Header("Character Talents")]
+    [SerializeField] private CharacterTalentSO walkAndSprintTalent;
+    [SerializeField] private CharacterTalentSO jumpTalent;
+    [SerializeField] private CharacterTalentSO healthTalent;
 
-    public float GetSpeedValue(int level)
+    public void Init()
     {
-        return movementSpeedCurve.Evaluate(level) * movementSpeedIncreaseAmount + baseMovementSpeed;
+        if (walkAndSprintTalent != null)
+            walkAndSprintTalent.CurrentTalentLevel = 0;
+        if (jumpTalent != null)
+            jumpTalent.CurrentTalentLevel = 0;
+        if (healthTalent != null)
+            healthTalent.CurrentTalentLevel = 0;
     }
 
-    public float GetSprintValue(int level)
+    public float GetSpeedValue()
     {
-        return baseSprintSpeed;
+        float speedIncrement = walkAndSprintTalent != null ? movementSpeedCurve.Evaluate(walkAndSprintTalent.TalentRate) * movementSpeedIncreaseAmount : 0f;
+        return speedIncrement + baseMovementSpeed;
     }
 
-    public float GetJumpValue(int level)
+    public float GetSprintSpeedValue()
     {
-        return baseJumpSpeed;
+        float speedIncrement = walkAndSprintTalent != null ? movementSpeedCurve.Evaluate(walkAndSprintTalent.TalentRate) * movementSpeedIncreaseAmount : 0f;
+        return speedIncrement + baseSprintSpeed;
     }
+
+    public float GetJumpValue()
+    {
+        float jumpIncrement = jumpTalent != null ? jumpSpeedCurve.Evaluate(jumpTalent.TalentRate) * jumpSpeedIncreaseAmount : 0f;
+        return jumpIncrement + baseJumpSpeed;
+    }
+
 }

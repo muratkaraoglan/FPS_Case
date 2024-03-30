@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
+
 
 public class FPSController : StateMachine
 {
@@ -12,13 +12,14 @@ public class FPSController : StateMachine
     [SerializeField, Min(.01f)] private float horizontalSensitivity;
     [SerializeField] private BaseGunController baseGunController;
     [field: SerializeField] public PlayerStatsSO PlayerStats { get; private set; }
-
+    [SerializeField] private float currentHealth;
 
 
     private Vector3 velocity;
     private float verticalRotation, horizontalRotation;
     private void Start()
     {
+        PlayerStats.Init();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         cameraTransform.SetParent(gunParentTransform);
@@ -27,11 +28,11 @@ public class FPSController : StateMachine
 
     public void Move(CharacterInput input)
     {
-        float speedRate = input.Sprint ? PlayerStats.GetSprintValue(0) : PlayerStats.GetSpeedValue(0);
+        float speedRate = input.Sprint ? PlayerStats.GetSprintSpeedValue() : PlayerStats.GetSpeedValue();
 
         velocity.x = input.DirectionInput.x * speedRate;
         velocity.z = input.DirectionInput.y * speedRate;
-        if (input.Jump) playerRigidbody.AddForce(Vector3.up * PlayerStats.GetJumpValue(0));
+        if (input.Jump) playerRigidbody.AddForce(Vector3.up * PlayerStats.GetJumpValue());
         velocity.y = playerRigidbody.velocity.y;
 
 

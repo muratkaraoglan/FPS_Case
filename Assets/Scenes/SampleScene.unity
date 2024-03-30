@@ -536,6 +536,7 @@ MonoBehaviour:
   gunParentTransform: {fileID: 543450651641112609}
   verticalSensitivity: 0.085
   horizontalSensitivity: 0.08
+  baseGunController: {fileID: 5866666019857642076}
   <PlayerStats>k__BackingField: {fileID: 11400000, guid: f8559f61da1a0434382407f3a3457fa6,
     type: 2}
 --- !u!1 &592918816
@@ -1407,6 +1408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450651641112609}
   - component: {fileID: 5866666019857642075}
+  - component: {fileID: 5866666019857642076}
   m_Layer: 0
   m_Name: FP_MP5
   m_TagString: Untagged
@@ -2812,6 +2814,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5866666019857642076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147992081051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814519e01898f5f498eca66073037d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5866666019857642075}
+  magazineCapacity: 0
+  bulletDamage: 0
+  bulletSpeed: 0
+  fireDelay: 0.1
+  firePoint: {fileID: 0}
 --- !u!1 &5906518559847559586
 GameObject:
   m_ObjectHideFlags: 0

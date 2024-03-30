@@ -28,6 +28,7 @@ public class PlayerJumpState : PlayerBaseState
         // if (controller.IsGrounded) 
         HandleInput();
         ApplyRotation();
+        ApplyFire();
         if (!checkGround) return;
         if (controller.IsGrounded()) controller.SwitchState(new PlayerMovementState(controller));
     }

@@ -15,7 +15,7 @@ public class PlayerMovementState : PlayerBaseState
     }
 
     private void OnJumpPerformed()
-    {   
+    {
         controller.SwitchState(new PlayerJumpState(controller));
     }
 
@@ -28,6 +28,7 @@ public class PlayerMovementState : PlayerBaseState
         HandleInput();
         ApplyRotation();
         ApplyMovement();
+        ApplyFire();
     }
 }
 

@@ -10,7 +10,9 @@ public class FPSController : StateMachine
     [SerializeField] private Transform gunParentTransform;
     [SerializeField, Min(.01f)] private float verticalSensitivity;
     [SerializeField, Min(.01f)] private float horizontalSensitivity;
+    [SerializeField] private BaseGunController baseGunController;
     [field: SerializeField] public PlayerStatsSO PlayerStats { get; private set; }
+
 
 
     private Vector3 velocity;
@@ -25,12 +27,14 @@ public class FPSController : StateMachine
 
     public void Move(CharacterInput input)
     {
-        velocity.x = input.DirectionInput.x * PlayerStats.GetSpeedValue(0);
-        velocity.z = input.DirectionInput.y * PlayerStats.GetSpeedValue(0);
+        float speedRate = input.Sprint ? PlayerStats.GetSprintValue(0) : PlayerStats.GetSpeedValue(0);
+
+        velocity.x = input.DirectionInput.x * speedRate;
+        velocity.z = input.DirectionInput.y * speedRate;
         if (input.Jump) playerRigidbody.AddForce(Vector3.up * PlayerStats.GetJumpValue(0));
         velocity.y = playerRigidbody.velocity.y;
 
-        
+
 
         Quaternion rotationY = Quaternion.Euler(0, gunParentTransform.rotation.eulerAngles.y, 0);
 
@@ -47,6 +51,12 @@ public class FPSController : StateMachine
         gunParentTransform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
     }
 
+    public void Fire(CharacterInput input)
+    {
+        if (input.Fire)
+            baseGunController.Fire();
+    }
+
     public Vector3 Position => playerRigidbody.position;
 
     public bool IsGrounded()
@@ -55,9 +65,6 @@ public class FPSController : StateMachine
         if (Physics.Raycast(ray, .01f)) return true;
         return false;
     }
-
-
-
 }
 
 public struct CharacterInput
@@ -65,6 +72,7 @@ public struct CharacterInput
     public Vector2 DirectionInput;
     public Vector2 LookInput;
     public bool Jump;
-
+    public bool Sprint;
+    public bool Fire;
 }
 

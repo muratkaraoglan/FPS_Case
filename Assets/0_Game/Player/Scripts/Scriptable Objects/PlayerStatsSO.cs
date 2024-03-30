@@ -17,6 +17,11 @@ public class PlayerStatsSO : ScriptableObject
         return movementSpeedCurve.Evaluate(level) * movementSpeedIncreaseAmount + baseMovementSpeed;
     }
 
+    public float GetSprintValue(int level)
+    {
+        return baseSprintSpeed;
+    }
+
     public float GetJumpValue(int level)
     {
         return baseJumpSpeed;

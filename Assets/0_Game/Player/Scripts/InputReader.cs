@@ -16,11 +16,12 @@ public class InputReader : Singleton<InputReader>, Controls.IPlayerActions
 
     public event Action OnJumpPerformed;
 
+
     public Vector2 Move { get; private set; }
     public Vector2 Look { get; private set; }
 
-    public bool Jump { get; private set; }
-
+    public bool Sprint { get; private set; }
+    public bool Fire { get; private set; }
     private void OnEnable()
     {
         if (controls != null) return;
@@ -43,5 +44,15 @@ public class InputReader : Singleton<InputReader>, Controls.IPlayerActions
     {
         if (context.performed) OnJumpPerformed?.Invoke();
 
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        Sprint = context.ReadValueAsButton();
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        Fire = context.ReadValueAsButton();
     }
 }

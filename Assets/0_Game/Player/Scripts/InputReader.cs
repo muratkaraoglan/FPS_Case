@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
@@ -13,9 +14,12 @@ public class InputReader : Singleton<InputReader>, Controls.IPlayerActions
         get { return controls; }
     }
 
+    public event Action OnJumpPerformed;
 
     public Vector2 Move { get; private set; }
     public Vector2 Look { get; private set; }
+
+    public bool Jump { get; private set; }
 
     private void OnEnable()
     {
@@ -33,5 +37,11 @@ public class InputReader : Singleton<InputReader>, Controls.IPlayerActions
     public void OnLook(InputAction.CallbackContext context)
     {
         Look = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnJumpPerformed?.Invoke();
+
     }
 }

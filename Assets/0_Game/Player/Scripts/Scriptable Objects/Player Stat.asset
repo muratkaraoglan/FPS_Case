@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Player Stat
   m_EditorClassIdentifier: 
   baseMovementSpeed: 10
-  movementSpeedIncreaseAmount: 5
+  movementSpeedIncreaseAmount: 15
   baseSprintSpeed: 0
-  baseJumpSpeed: 0
+  baseJumpSpeed: 8
   baseHealth: 0
   movementSpeedCurve:
     serializedVersion: 2

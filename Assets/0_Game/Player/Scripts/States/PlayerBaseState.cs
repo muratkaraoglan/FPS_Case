@@ -6,7 +6,7 @@ public abstract class PlayerBaseState : State
 {
     protected readonly FPSController controller;
     public bool Jump;
-
+    CharacterInput characterInput;
 
     protected PlayerBaseState(FPSController controller)
     {
@@ -15,10 +15,20 @@ public abstract class PlayerBaseState : State
 
     public void HandleInput()
     {
-        CharacterInput characterInput = new CharacterInput();
+        characterInput = new CharacterInput();
         characterInput.DirectionInput = InputReader.Instance.Move;
         characterInput.LookInput = InputReader.Instance.Look;
+        characterInput.Jump = Jump;
+    }
 
+    public void ApplyMovement()
+    {
         controller.Move(characterInput);
     }
+    public void ApplyRotation()
+    {
+        controller.ApplyRotation(characterInput);
+    }
+
+ 
 }

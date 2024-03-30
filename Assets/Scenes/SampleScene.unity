@@ -494,12 +494,12 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487932755}
   serializedVersion: 2
-  m_Mass: 70
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!4 &487932758
@@ -534,6 +534,8 @@ MonoBehaviour:
   playerRigidbody: {fileID: 487932757}
   cameraTransform: {fileID: 330585546}
   gunParentTransform: {fileID: 543450651641112609}
+  verticalSensitivity: 0.085
+  horizontalSensitivity: 0.08
   <PlayerStats>k__BackingField: {fileID: 11400000, guid: f8559f61da1a0434382407f3a3457fa6,
     type: 2}
 --- !u!1 &592918816

@@ -18,5 +18,6 @@ public class StateMachine : MonoBehaviour
     {
         currentState?.Tick();
     }
+
 }
 

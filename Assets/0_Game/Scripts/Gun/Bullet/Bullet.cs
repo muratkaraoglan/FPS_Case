@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _bulletRigidbody;
+    [SerializeField, Min(1f)] private float _disableTime;
     private int _damage;
     private bool _pierce;
 
@@ -15,6 +16,13 @@ public class Bullet : MonoBehaviour
         _damage = damage;
         _pierce = pierce;
         _bulletRigidbody.AddForce(direction * speed, ForceMode.Impulse);
+        StartCoroutine(SetDisable());
+    }
+
+    IEnumerator SetDisable()
+    {
+        yield return new WaitForSeconds(_disableTime);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,5 +32,10 @@ public class Bullet : MonoBehaviour
             damagable.TakeDamage(_damage);
             if (!_pierce) gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }

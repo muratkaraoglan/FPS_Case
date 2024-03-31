@@ -128,3 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletRigidbody: {fileID: 1154193814237353890}
+  _disableTime: 3

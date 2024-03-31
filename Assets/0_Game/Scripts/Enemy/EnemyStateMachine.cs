@@ -20,7 +20,7 @@ public class EnemyStateMachine : StateMachine, IDamagable
     [field: SerializeField] public float ChaseSpeed { get; private set; }
     public Vector3 Center { get; private set; }
     private int _currentHealth = 0;
-    public bool IsDead;
+    [HideInInspector] public bool IsDead;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

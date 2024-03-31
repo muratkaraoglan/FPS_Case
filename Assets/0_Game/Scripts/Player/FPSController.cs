@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class FPSController : StateMachine
+public class FPSController : StateMachine, IDamagable
 {
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private Transform _cameraTransform;
@@ -66,6 +66,18 @@ public class FPSController : StateMachine
         Ray ray = new Ray(Position, Vector3.down);
         if (Physics.Raycast(ray, .1f)) return true;
         return false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth<=0)
+        {
+            //open panel
+            InputReader.Instance.Controls.Disable();
+        }
+        _currentHealth = Mathf.Max(0, _currentHealth);
+        UIController.Instance.SetHealthBar(_currentHealth, PlayerStats.GetHealthValue());
     }
 
     public int CurrentHealth => _currentHealth;

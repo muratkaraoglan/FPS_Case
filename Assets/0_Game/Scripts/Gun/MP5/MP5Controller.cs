@@ -6,8 +6,6 @@ using static UnityEditorInternal.ReorderableList;
 public class MP5Controller : BaseGunController
 {
 
-    public Bullet bullet;
-
     private void Start()
     {
         DamageTalent.CurrentTalentLevel = 0;
@@ -37,11 +35,12 @@ public class MP5Controller : BaseGunController
                 targetPoint = ray.GetPoint(75f);
 
             Vector3 direction = targetPoint - firePoint.position;
-            Debug.DrawRay(firePoint.position, direction, Color.yellow, 100);
-            Bullet currentBullet = Instantiate(bullet, firePoint.position, Quaternion.identity);
+
+            Bullet currentBullet = ObjectPooler.Instance.GetPooledObject(0).GetComponent<Bullet>();
+            currentBullet.transform.position = firePoint.position;
 
             currentBullet.transform.forward = direction.normalized;
-
+            currentBullet.gameObject.SetActive(true);
             currentBullet.Init(DamageTalent.GetDamageAmount(), bulletSpeed, PierceTalent.IsPierceOpened, direction.normalized);
 
             magazineCapacity--;

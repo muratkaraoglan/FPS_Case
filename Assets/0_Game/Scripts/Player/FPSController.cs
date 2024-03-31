@@ -67,6 +67,8 @@ public class FPSController : StateMachine
         if (Physics.Raycast(ray, .1f)) return true;
         return false;
     }
+
+    public int CurrentHealth => currentHealth;
 }
 
 public struct CharacterInput

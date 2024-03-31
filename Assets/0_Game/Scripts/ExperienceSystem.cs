@@ -9,9 +9,12 @@ public class ExperienceSystem : Singleton<ExperienceSystem>
     [SerializeField] private int _currentXP;
     [SerializeField] private int _targetXP;
 
+    [field: SerializeField] public int CurrentTalentPoint { get; set; }
+
     private void Start()
     {
         CalculateTargetXP();
+        UIController.Instance.SetXPBar(_currentXP, _targetXP);
     }
 
 
@@ -21,9 +24,9 @@ public class ExperienceSystem : Singleton<ExperienceSystem>
     }
 
     [ContextMenu("XP")]
-    public void GainXP()
+    public void GainXP(int xp)
     {
-        _currentXP += 10;
+        _currentXP += xp;
 
         if (_currentXP >= _targetXP)
         {
@@ -31,7 +34,7 @@ public class ExperienceSystem : Singleton<ExperienceSystem>
             CurrentLevel++;
             _currentXP = _currentXP - _targetXP;
             CalculateTargetXP();
-           
+            CurrentTalentPoint++;
             //1 talent point
             //update UI
         }

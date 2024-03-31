@@ -5,9 +5,6 @@ using static UnityEditorInternal.ReorderableList;
 
 public class MP5Controller : BaseGunController
 {
-    [field: SerializeField] public DamageTalentSO DamageTalent { get; private set; }
-    [field: SerializeField] public AmmoTalentSO AmmoTalent { get; private set; }
-    [field: SerializeField] public PierceTalentSO PierceTalent { get; private set; }
 
     public Bullet bullet;
 

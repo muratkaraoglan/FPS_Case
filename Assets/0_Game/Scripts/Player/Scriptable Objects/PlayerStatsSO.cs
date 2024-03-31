@@ -54,9 +54,18 @@ public class PlayerStatsSO : ScriptableObject
 
     public int GetHealthValue()
     {
-        Debug.Log("healthTalent.TalentRate "+healthTalent.TalentRate);
         int healthIncrease = healthTalent != null ? (int)(healthCurve.Evaluate(healthTalent.TalentRate) * healthIncreaseAmount) : 0;
         return healthIncrease + baseHealth;
     }
 
+    public int PreviousHealthValue()
+    {
+        int previousIncrease = (int)(healthCurve.Evaluate(healthTalent.PreviousTalentRate) * healthIncreaseAmount);
+        return previousIncrease + baseHealth;
+    }
+
+
+    public Talent GetWalkTalent() => walkAndSprintTalent;
+    public Talent GetJumpTalent() => jumpTalent;
+    public Talent GetHealthTalent() => healthTalent;
 }

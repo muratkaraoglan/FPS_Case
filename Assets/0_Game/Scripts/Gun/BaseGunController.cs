@@ -12,6 +12,9 @@ public abstract class BaseGunController : MonoBehaviour
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected ParticleSystem muzzleParticle;
     [SerializeField] protected LayerMask aimIgnoreLayerMask;
+    [field: SerializeField] public DamageTalentSO DamageTalent { get; private set; }
+    [field: SerializeField] public AmmoTalentSO AmmoTalent { get; private set; }
+    [field: SerializeField] public PierceTalentSO PierceTalent { get; private set; }
     protected float nextFireTime;
     protected Camera fpsCamera;
     public abstract void Fire();

@@ -23,6 +23,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        if (other.TryGetComponent(out IDamagable damagable))
+        {
+            damagable.TakeDamage(_damage);
+            if (!_pierce) gameObject.SetActive(false);
+        }
     }
 }

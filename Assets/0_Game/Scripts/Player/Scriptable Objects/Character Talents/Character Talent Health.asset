@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Character Talent Health
   m_EditorClassIdentifier: 
   <TalentIcon>k__BackingField: {fileID: 0}
-  <TalentName>k__BackingField: Health Talent
+  <TalentName>k__BackingField: Max Health Talent
   <TalentDescription>k__BackingField: 
-  CurrentTalentLevel: 0
+  CurrentTalentLevel: 1
   requiredTalentPoint: 1
   MaxTalentLevel: 5

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ammo Talent
   m_EditorClassIdentifier: 
   <TalentIcon>k__BackingField: {fileID: 0}
-  <TalentName>k__BackingField: 
+  <TalentName>k__BackingField: Max Ammo Talent
   <TalentDescription>k__BackingField: 
   CurrentTalentLevel: 0
   requiredTalentPoint: 1

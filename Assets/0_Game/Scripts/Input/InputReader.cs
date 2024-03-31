@@ -55,4 +55,10 @@ public class InputReader : Singleton<InputReader>, Controls.IPlayerActions
     {
         Fire = context.ReadValueAsButton();
     }
+
+    public void OnTalent(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            TalentSystem.Instance.gameObject.SetActive(true);
+    }
 }

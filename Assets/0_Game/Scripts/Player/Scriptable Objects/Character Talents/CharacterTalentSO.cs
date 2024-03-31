@@ -19,17 +19,23 @@ public abstract class Talent : ScriptableObject
     [SerializeField] private int MaxTalentLevel;
 
 
-    public  int TryLevelUp(int talentPoint)
+    public void TryLevelUp()
     {
-        if (talentPoint >= requiredTalentPoint)
+        if (ExperienceSystem.Instance.CurrentTalentPoint >= requiredTalentPoint)
         {
             CurrentTalentLevel++;
             CurrentTalentLevel = Mathf.Min(CurrentTalentLevel, MaxTalentLevel);
-            talentPoint-= requiredTalentPoint;
+            ExperienceSystem.Instance.CurrentTalentPoint -= requiredTalentPoint;
         }
-        return talentPoint;
+
     }
     public bool IsReachedMaxLevel() => CurrentTalentLevel == MaxTalentLevel;
 
     public float TalentRate => Mathf.InverseLerp(0f, MaxTalentLevel, CurrentTalentLevel);
+
+    public float PreviousTalentRate => Mathf.InverseLerp(0f, MaxTalentLevel, Mathf.Max(0, CurrentTalentLevel - 1));
+    public override string ToString()
+    {
+        return TalentName + "\n" + TalentDescription + "\n" + "Current Level: " + CurrentTalentLevel + "/" + MaxTalentLevel + "\n" + "Required Talent Point: " + requiredTalentPoint;
+    }
 }

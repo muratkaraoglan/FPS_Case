@@ -16,6 +16,7 @@ public class UIController : Singleton<UIController>
     [Header("XP Bar")]
     [SerializeField] private TextMeshProUGUI _xpText;
     [SerializeField] private Image _xpFillImage;
+    [SerializeField] private TextMeshProUGUI _levelText;
     public void SetHealthBar(int currentHealth, int maxHealth)
     {
         _healthText.SetText(currentHealth + "/" + maxHealth);
@@ -31,5 +32,6 @@ public class UIController : Singleton<UIController>
     {
         _xpText.SetText(currentXP + "/" + maxXP);
         _xpFillImage.fillAmount = Mathf.InverseLerp(0, maxXP, currentXP);
+        _levelText.SetText("Level: " + ExperienceSystem.Instance.CurrentLevel.ToString());
     }
 }

@@ -33,10 +33,7 @@ public class TalentSystem : Singleton<TalentSystem>
         {
             _baseGunController = FindObjectOfType<BaseGunController>();
         }
-        if (_fPSController == null)
-        {
-            _fPSController = FindObjectOfType<FPSController>();
-        }
+        _fPSController = GameManager.Instance.FPSController;
 
         FillHolders();
     }

@@ -1,20 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyStateMachine : MonoBehaviour, IDamagable
+public class EnemyStateMachine : StateMachine, IDamagable
 {
+    [SerializeField] private LayerMask _playerLayer;
     [SerializeField, Min(1)] private int _maxHealth;
     [SerializeField] private int _exprienceAmount;
     [SerializeField] private Image _healthBarImage;
     [field: SerializeField] public int Damage { get; private set; }
+    [field: SerializeField] public Animator Animator { get; private set; }
+    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+    [field: SerializeField] public float MaxAreaRadius { get; private set; }
+    [field: SerializeField] public float PlayerDetectRadius { get; private set; }
+    [field: SerializeField, Range(0, 179)] public float SightAngle { get; private set; }
+    [field: SerializeField] public float AttackRadius { get; private set; }
+    [field: SerializeField] public float MoveSpeed { get; private set; }
+    [field: SerializeField] public float ChaseSpeed { get; private set; }
+    public Vector3 Center { get; private set; }
     private int _currentHealth = 0;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(Center, MaxAreaRadius);//Patrol area
+
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, PlayerDetectRadius);//player detect radius
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, AttackRadius);//player attack radius
+    }
     private void OnEnable()
     {
         _currentHealth = _maxHealth;
         _healthBarImage.fillAmount = 1f;
+        NavMesh.SamplePosition(new Vector3(Random.Range(-200, 200), 0, Random.Range(-200, 200)), out NavMeshHit hit, 200, NavMesh.AllAreas);
+        transform.position = hit.position;
+        Center = transform.position;
+        SwitchState(new EnemyIdleState(this));
     }
+
+    public Vector3 GetRandomPointInSafeArae()
+    {
+        Vector3 normalizedPoint = Random.insideUnitSphere;
+        Vector3 worldPoint = normalizedPoint * MaxAreaRadius + Center;
+        worldPoint.y = Center.y;
+        return worldPoint;
+    }
+
+    public Vector3 Position => transform.position;
 
     public void TakeDamage(int damage)
     {

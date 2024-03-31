@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class FPSController : StateMachine
 {
-    [SerializeField] private Rigidbody playerRigidbody;
-    [SerializeField] private Transform cameraTransform;
-    [SerializeField] private Transform gunParentTransform;
-    [SerializeField, Min(.01f)] private float verticalSensitivity;
-    [SerializeField, Min(.01f)] private float horizontalSensitivity;
-    [SerializeField] private BaseGunController baseGunController;
+    [SerializeField] private Rigidbody _playerRigidbody;
+    [SerializeField] private Transform _cameraTransform;
+    [SerializeField] private Transform _gunParentTransform;
+    [SerializeField, Min(.01f)] private float _verticalSensitivity;
+    [SerializeField, Min(.01f)] private float _horizontalSensitivity;
+    [SerializeField] private BaseGunController _baseGunController;
     [field: SerializeField] public PlayerStatsSO PlayerStats { get; private set; }
-    [SerializeField] private int currentHealth;
+    [SerializeField] private int _currentHealth;
 
 
     private Vector3 velocity;
@@ -20,13 +20,13 @@ public class FPSController : StateMachine
     private void Start()
     {
         PlayerStats.Init();
-        currentHealth = PlayerStats.GetHealthValue();
-        UIController.Instance.SetHealthBar(currentHealth, PlayerStats.GetHealthValue());
+        _currentHealth = PlayerStats.GetHealthValue();
+        UIController.Instance.SetHealthBar(_currentHealth, PlayerStats.GetHealthValue());
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-        cameraTransform.SetParent(gunParentTransform);
+        _cameraTransform.SetParent(_gunParentTransform);
         SwitchState(new PlayerMovementState(this));
-        baseGunController.SetCamera(cameraTransform.GetComponent<Camera>());
+        _baseGunController.SetCamera(_cameraTransform.GetComponent<Camera>());
     }
 
     public void Move(CharacterInput input)
@@ -35,31 +35,31 @@ public class FPSController : StateMachine
 
         velocity.x = input.DirectionInput.x * speedRate;
         velocity.z = input.DirectionInput.y * speedRate;
-        if (input.Jump) playerRigidbody.AddForce(Vector3.up * PlayerStats.GetJumpValue());
-        velocity.y = playerRigidbody.velocity.y;
+        if (input.Jump) _playerRigidbody.AddForce(Vector3.up * PlayerStats.GetJumpValue());
+        velocity.y = _playerRigidbody.velocity.y;
 
-        Quaternion rotationY = Quaternion.Euler(0, gunParentTransform.rotation.eulerAngles.y, 0);
+        Quaternion rotationY = Quaternion.Euler(0, _gunParentTransform.rotation.eulerAngles.y, 0);
 
-        playerRigidbody.velocity = rotationY * velocity;
+        _playerRigidbody.velocity = rotationY * velocity;
     }
 
     public void ApplyRotation(CharacterInput input)
     {
-        verticalRotation -= input.LookInput.y * verticalSensitivity;
-        horizontalRotation += input.LookInput.x * horizontalSensitivity;
+        verticalRotation -= input.LookInput.y * _verticalSensitivity;
+        horizontalRotation += input.LookInput.x * _horizontalSensitivity;
 
         verticalRotation = Mathf.Clamp(verticalRotation, -70f, 70f);
 
-        gunParentTransform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
+        _gunParentTransform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
     }
 
     public void Fire(CharacterInput input)
     {
         if (input.Fire)
-            baseGunController.Fire();
+            _baseGunController.Fire();
     }
 
-    public Vector3 Position => playerRigidbody.position;
+    public Vector3 Position => _playerRigidbody.position;
 
     public bool IsGrounded()
     {
@@ -68,7 +68,8 @@ public class FPSController : StateMachine
         return false;
     }
 
-    public int CurrentHealth => currentHealth;
+    public int CurrentHealth => _currentHealth;
+    public bool IsPlayerAlive => _currentHealth > 0;
 }
 
 public struct CharacterInput

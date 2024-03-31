@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBaseState : MonoBehaviour
+public abstract class EnemyBaseState : State
 {
-    // Start is called before the first frame update
-    void Start()
+    protected readonly EnemyStateMachine _enemyStateMachine;
+    public bool IsPlayerInAttackRange;
+    public bool IsPlayerInNoticeRange;
+    public bool IsPositionInSafeArea;
+
+    protected EnemyBaseState(EnemyStateMachine enemyStateMachine)
     {
-        
+        _enemyStateMachine = enemyStateMachine;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void HandlePlayerAndArea()
     {
-        
+        IsPositionInSafeArea = Vector3.Distance(_enemyStateMachine.Position, _enemyStateMachine.Center)
+                < _enemyStateMachine.MaxAreaRadius;
+        IsPlayerInAttackRange = GameManager.Instance.FPSController.IsPlayerAlive &&
+                Vector3.Distance(_enemyStateMachine.Position, GameManager.Instance.FPSController.Position) < _enemyStateMachine.AttackRadius;
+       
+        IsPlayerInNoticeRange = GameManager.Instance.FPSController.IsPlayerAlive &&
+               Vector3.Distance(_enemyStateMachine.Position, GameManager.Instance.FPSController.Position) <= _enemyStateMachine.PlayerDetectRadius;
     }
 }

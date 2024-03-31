@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class ExperienceSystem : Singleton<ExperienceSystem>
     [SerializeField] private int _targetXP;
 
     [field: SerializeField] public int CurrentTalentPoint { get; set; }
+
+    public event Action OnLevelUp;
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class ExperienceSystem : Singleton<ExperienceSystem>
             _currentXP = _currentXP - _targetXP;
             CalculateTargetXP();
             CurrentTalentPoint++;
+            OnLevelUp?.Invoke();
             //1 talent point
             //update UI
         }

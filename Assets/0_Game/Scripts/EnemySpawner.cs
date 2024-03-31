@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject _enemyPrefab;
+    
+    private void OnEnable()
+    {
+        ExperienceSystem.Instance.OnLevelUp += OnLevelUp;
+    }
+
+    private void OnLevelUp()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        ExperienceSystem.Instance.OnLevelUp -= OnLevelUp;
     }
 }

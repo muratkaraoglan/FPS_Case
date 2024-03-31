@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 using UnityEngine.UI;
 
 public class EnemyStateMachine : StateMachine, IDamagable
@@ -10,6 +11,7 @@ public class EnemyStateMachine : StateMachine, IDamagable
     [SerializeField, Min(1)] private int _maxHealth;
     [SerializeField] private int _exprienceAmount;
     [SerializeField] private Image _healthBarImage;
+    [SerializeField] private RotationConstraint _rotationConstraint;
     [field: SerializeField] public int Damage { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
@@ -18,6 +20,7 @@ public class EnemyStateMachine : StateMachine, IDamagable
     [field: SerializeField] public float AttackRadius { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
     [field: SerializeField] public float ChaseSpeed { get; private set; }
+
     public Vector3 Center { get; private set; }
     private int _currentHealth = 0;
     [HideInInspector] public bool IsDead;
@@ -32,6 +35,17 @@ public class EnemyStateMachine : StateMachine, IDamagable
 
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, AttackRadius);//player attack radius
+    }
+
+    private void Awake()
+    {
+        ConstraintSource constraintSource = new ConstraintSource()
+        {
+            sourceTransform = GameManager.Instance.FPSController.CameraTransform,
+            weight = 1.0f,
+        };
+        _rotationConstraint.SetSource(0, constraintSource);
+        
     }
     private void OnEnable()
     {

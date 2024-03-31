@@ -6,10 +6,11 @@ using UnityEngine;
 public class FPSController : StateMachine, IDamagable
 {
     [SerializeField] private Rigidbody _playerRigidbody;
-    [SerializeField] private Transform _cameraTransform;
     [SerializeField] private Transform _gunParentTransform;
     [SerializeField, Min(.01f)] private float _verticalSensitivity;
     [SerializeField, Min(.01f)] private float _horizontalSensitivity;
+
+    [field: SerializeField] public Transform CameraTransform;
     [field: SerializeField] public BaseGunController BaseGunController { get; private set; }
     [field: SerializeField] public PlayerStatsSO PlayerStats { get; private set; }
     [SerializeField] private int _currentHealth;
@@ -24,9 +25,9 @@ public class FPSController : StateMachine, IDamagable
         UIController.Instance.SetHealthBar(_currentHealth, PlayerStats.GetHealthValue());
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-        _cameraTransform.SetParent(_gunParentTransform);
+        CameraTransform.SetParent(_gunParentTransform);
         SwitchState(new PlayerMovementState(this));
-        BaseGunController.SetCamera(_cameraTransform.GetComponent<Camera>());
+        BaseGunController.SetCamera(CameraTransform.GetComponent<Camera>());
     }
 
     public void Move(CharacterInput input)

@@ -999,10 +999,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerRigidbody: {fileID: 487932757}
-  _cameraTransform: {fileID: 330585546}
   _gunParentTransform: {fileID: 543450651641112609}
   _verticalSensitivity: 0.085
   _horizontalSensitivity: 0.08
+  CameraTransform: {fileID: 330585546}
   <BaseGunController>k__BackingField: {fileID: 5866666019857642076}
   <PlayerStats>k__BackingField: {fileID: 11400000, guid: f8559f61da1a0434382407f3a3457fa6,
     type: 2}
@@ -3860,7 +3860,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430253963}
-  m_LocalRotation: {x: 0.00052334444, y: -0.99942887, z: 0.028272847, w: 0.018503234}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3936,8 +3936,8 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1183024399 &1430253969
-LookAtConstraint:
+--- !u!1818360609 &1430253969
+RotationConstraint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3947,13 +3947,13 @@ LookAtConstraint:
   m_Weight: 1
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_Roll: 0
-  m_WorldUpObject: {fileID: 0}
-  m_UseUpObject: 0
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
   m_IsContraintActive: 1
-  m_IsLocked: 0
+  m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 330585546}
+  - sourceTransform: {fileID: 0}
     weight: 1
 --- !u!1 &1484354901
 GameObject:
@@ -5054,6 +5054,7 @@ MonoBehaviour:
   _maxHealth: 100
   _exprienceAmount: 10
   _healthBarImage: {fileID: 141218052}
+  _rotationConstraint: {fileID: 1430253969}
   <Damage>k__BackingField: 10
   <Animator>k__BackingField: {fileID: 919212689}
   <Agent>k__BackingField: {fileID: 1937583165}

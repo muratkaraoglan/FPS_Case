@@ -11,7 +11,8 @@ public class AmmoTalentSO : Talent
  
     public int GetMaxAmmoCount()
     {
-        int ammoIncrease = (int)(ammoCurve.Evaluate(TalentRate)) * ammoIncreaseAmount;
+        int ammoIncrease = (int)(ammoCurve.Evaluate(TalentRate) * ammoIncreaseAmount);
+        Debug.Log(ammoIncrease);
         return ammoIncrease + baseAmmoCount;
 
     }

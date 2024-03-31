@@ -5,4 +5,5 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [field: SerializeField] public FPSController FPSController;
+    [field: SerializeField] public Vector2 AreaBound;
 }

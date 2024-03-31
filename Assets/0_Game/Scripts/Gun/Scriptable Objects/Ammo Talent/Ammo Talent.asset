@@ -15,11 +15,11 @@ MonoBehaviour:
   <TalentIcon>k__BackingField: {fileID: 0}
   <TalentName>k__BackingField: Max Ammo Talent
   <TalentDescription>k__BackingField: 
-  CurrentTalentLevel: 0
+  CurrentTalentLevel: 5
   requiredTalentPoint: 1
   MaxTalentLevel: 5
   baseAmmoCount: 20
-  ammoIncreaseAmount: 10
+  ammoIncreaseAmount: 15
   ammoCurve:
     serializedVersion: 2
     m_Curve:

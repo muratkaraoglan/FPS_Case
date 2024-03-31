@@ -20,4 +20,21 @@ public abstract class BaseGunController : MonoBehaviour
     public abstract void Fire();
 
     public void SetCamera(Camera camera) => fpsCamera = camera;
+
+    public void TryFillMagazine(ref int magazineCount)
+    {
+        int requiredAmmoCount = AmmoTalent.GetMaxAmmoCount() - magazineCapacity;
+        if (requiredAmmoCount <= magazineCount)
+        {
+            magazineCount -= requiredAmmoCount;
+
+        }
+        else
+        {
+            requiredAmmoCount = magazineCount;
+            magazineCount = 0;
+        }
+        magazineCapacity += requiredAmmoCount;
+        UIController.Instance.SetCurrentAmmoText(magazineCapacity);
+    }
 }

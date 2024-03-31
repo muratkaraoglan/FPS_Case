@@ -39,7 +39,9 @@ public class EnemyStateMachine : StateMachine, IDamagable
         _currentHealth = _maxHealth;
         _healthBarImage.fillAmount = 1f;
         _healthBarImage.transform.parent.gameObject.SetActive(true);
-        NavMesh.SamplePosition(new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100)), out NavMeshHit hit, 200, NavMesh.AllAreas);
+        float areaBoundx = Mathf.Abs(GameManager.Instance.AreaBound.x) * .5f;
+        float areaBoundz = Mathf.Abs(GameManager.Instance.AreaBound.y) * .5f;
+        NavMesh.SamplePosition(new Vector3(Random.Range(-areaBoundx, areaBoundx), 0, Random.Range(-areaBoundz, areaBoundz)), out NavMeshHit hit, 200, NavMesh.AllAreas);
         transform.position = hit.position;
         Center = transform.position;
         SwitchState(new EnemyIdleState(this));

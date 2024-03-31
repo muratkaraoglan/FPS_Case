@@ -9,13 +9,9 @@ public class Bullet : MonoBehaviour
     private bool _pierce;
 
 
-    private void Start()
-    {
-
-    }
-
     public void Init(int damage, float speed, bool pierce, Vector3 direction)
     {
+        _bulletRigidbody.velocity = Vector3.zero;
         _damage = damage;
         _pierce = pierce;
         _bulletRigidbody.AddForce(direction * speed, ForceMode.Impulse);

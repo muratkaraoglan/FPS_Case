@@ -15,12 +15,12 @@ public class EnemyStateMachine : StateMachine, IDamagable
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
     [field: SerializeField] public float MaxAreaRadius { get; private set; }
     [field: SerializeField] public float PlayerDetectRadius { get; private set; }
-    [field: SerializeField, Range(0, 179)] public float SightAngle { get; private set; }
     [field: SerializeField] public float AttackRadius { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
     [field: SerializeField] public float ChaseSpeed { get; private set; }
     public Vector3 Center { get; private set; }
     private int _currentHealth = 0;
+    public bool IsDead;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -35,9 +35,11 @@ public class EnemyStateMachine : StateMachine, IDamagable
     }
     private void OnEnable()
     {
+        IsDead = false;
         _currentHealth = _maxHealth;
         _healthBarImage.fillAmount = 1f;
-        NavMesh.SamplePosition(new Vector3(Random.Range(-200, 200), 0, Random.Range(-200, 200)), out NavMeshHit hit, 200, NavMesh.AllAreas);
+        _healthBarImage.transform.parent.gameObject.SetActive(true);
+        NavMesh.SamplePosition(new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100)), out NavMeshHit hit, 200, NavMesh.AllAreas);
         transform.position = hit.position;
         Center = transform.position;
         SwitchState(new EnemyIdleState(this));
@@ -55,13 +57,20 @@ public class EnemyStateMachine : StateMachine, IDamagable
 
     public void TakeDamage(int damage)
     {
+        if (IsDead) return;
         _currentHealth -= damage;
         float fillAmount = Mathf.InverseLerp(0, _maxHealth, _currentHealth);
         _healthBarImage.fillAmount = fillAmount;
         if (_currentHealth <= 0)
         {
+            IsDead = true;
             ExperienceSystem.Instance.GainXP(_exprienceAmount);
-            //dead
+            SwitchState(new EnemyDeathState(this));
         }
+    }
+
+    public void CloseCanvas()
+    {
+        _healthBarImage.transform.parent.gameObject.SetActive(false);
     }
 }

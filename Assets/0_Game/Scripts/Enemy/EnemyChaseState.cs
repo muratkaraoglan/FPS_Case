@@ -10,7 +10,9 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("Chase State");
+        _enemyStateMachine.Agent.speed = _enemyStateMachine.ChaseSpeed;
+        _enemyStateMachine.Animator.Play(StringHelper.RUN);
+        _enemyStateMachine.Agent.stoppingDistance = 1f;
     }
 
     public override void Exit()
@@ -20,6 +22,21 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void Tick()
     {
-        
+        _enemyStateMachine.Agent.SetDestination(GameManager.Instance.FPSController.Position);
+        HandlePlayerAndArea();
+        if (!IsPositionInSafeArea)
+        {
+            _enemyStateMachine.SwitchState(new EnemyBackToCenterState(_enemyStateMachine));
+            return;
+        }
+        if (!IsPlayerInNoticeRange)
+        {
+            _enemyStateMachine.SwitchState(new EnemyIdleState(_enemyStateMachine));
+        }
+        if (IsPlayerInAttackRange)
+        {
+            _enemyStateMachine.SwitchState(new EnemyAttackState(_enemyStateMachine));
+            return;
+        }
     }
 }

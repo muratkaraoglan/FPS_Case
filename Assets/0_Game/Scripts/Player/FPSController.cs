@@ -84,15 +84,17 @@ public class FPSController : StateMachine, IDamagable
     public int CurrentHealth => _currentHealth;
     public bool IsPlayerAlive => _currentHealth > 0;
 
-    public void TryHeal(int healAmount)
+    public bool TryHeal(int healAmount)
     {
         int requiredHeal = PlayerStats.GetHealthValue() - CurrentHealth;
         if (requiredHeal > healAmount)
         {
             requiredHeal = healAmount;
         }
+        if (requiredHeal == 0) return false;
         _currentHealth += requiredHeal;
         UIController.Instance.SetHealthBar(_currentHealth, PlayerStats.GetHealthValue());
+        return true;
     }
 }
 

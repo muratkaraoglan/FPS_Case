@@ -6,9 +6,9 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _bulletRigidbody;
     [SerializeField, Min(1f)] private float _disableTime;
+
     private int _damage;
     private bool _pierce;
-
 
     public void Init(int damage, float speed, bool pierce, Vector3 direction)
     {
@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(_disableTime);
         gameObject.SetActive(false);
     }
+
 
     private void OnTriggerEnter(Collider other)
     {

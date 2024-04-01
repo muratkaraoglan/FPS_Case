@@ -40,7 +40,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   baseJumpSpeed: 300
-  jumpSpeedIncreaseAmount: 10
+  jumpSpeedIncreaseAmount: 30
   jumpSpeedCurve:
     serializedVersion: 2
     m_Curve:

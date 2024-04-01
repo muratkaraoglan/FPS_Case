@@ -9,12 +9,15 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
         Time.timeScale = 1f;
         FPSController.OnPlayerDie += FPSController_OnPlayerDie;
     }
 
     private void FPSController_OnPlayerDie()
     {
+        Cursor.visible = true;
         Time.timeScale = 0f;
     }
 }

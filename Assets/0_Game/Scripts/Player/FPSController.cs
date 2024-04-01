@@ -26,8 +26,6 @@ public class FPSController : StateMachine, IDamagable
         PlayerStats.Init();
         _currentHealth = PlayerStats.GetHealthValue();
         UIController.Instance.SetHealthBar(_currentHealth, PlayerStats.GetHealthValue());
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
         CameraTransform.SetParent(_gunParentTransform);
         SwitchState(new PlayerMovementState(this));
         BaseGunController.SetCamera(CameraTransform.GetComponent<Camera>());
@@ -45,6 +43,7 @@ public class FPSController : StateMachine, IDamagable
         Quaternion rotationY = Quaternion.Euler(0, _gunParentTransform.rotation.eulerAngles.y, 0);
 
         _playerRigidbody.velocity = rotationY * velocity;
+
     }
 
     public void ApplyRotation(CharacterInput input)

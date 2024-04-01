@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8234373daf12447a8812da15fb4c73, type: 3}
   m_Name: Damage Talent
   m_EditorClassIdentifier: 
-  <TalentIcon>k__BackingField: {fileID: 0}
+  <TalentIcon>k__BackingField: {fileID: 21300000, guid: 198196b75b050104e81fb7dd0bff551a,
+    type: 3}
   <TalentName>k__BackingField: Damage Talent
   <TalentDescription>k__BackingField: 
   CurrentTalentLevel: 0

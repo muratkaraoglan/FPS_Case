@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e4fbeb995172743b391b63f4fb9c8e, type: 3}
   m_Name: Character Talent Walk Sprint
   m_EditorClassIdentifier: 
-  <TalentIcon>k__BackingField: {fileID: 0}
+  <TalentIcon>k__BackingField: {fileID: 21300000, guid: 84df709200d5cd24fb930536c9a687d7,
+    type: 3}
   <TalentName>k__BackingField: Walk Sprint
   <TalentDescription>k__BackingField: 
-  CurrentTalentLevel: 1
+  CurrentTalentLevel: 0
   requiredTalentPoint: 1
   MaxTalentLevel: 5

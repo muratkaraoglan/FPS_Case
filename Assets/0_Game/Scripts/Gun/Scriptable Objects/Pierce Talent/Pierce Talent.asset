@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e958d0abade6a784f9e33517844767e7, type: 3}
   m_Name: Pierce Talent
   m_EditorClassIdentifier: 
-  <TalentIcon>k__BackingField: {fileID: 0}
+  <TalentIcon>k__BackingField: {fileID: 21300000, guid: 5bddc27464cad204fa7f9db8e506fb3c,
+    type: 3}
   <TalentName>k__BackingField: Pierce Talent
   <TalentDescription>k__BackingField: 
   CurrentTalentLevel: 0

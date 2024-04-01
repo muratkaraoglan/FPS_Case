@@ -16,7 +16,7 @@ public class EnemyDeathState : EnemyBaseState
         _enemyStateMachine.CloseCanvas();
         float animationTime = _enemyStateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         WaitForAnimation((int)(animationTime * 1000));
-        //score +1
+        UIController.Instance.SetScoreTexts(_enemyStateMachine.Score);
     }
 
     public override void Exit()

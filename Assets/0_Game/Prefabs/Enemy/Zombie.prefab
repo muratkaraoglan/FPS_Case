@@ -440,6 +440,7 @@ MonoBehaviour:
   _exprienceAmount: 10
   _healthBarImage: {fileID: 652989994376783850}
   _rotationConstraint: {fileID: 652989995403134847}
+  <Score>k__BackingField: 1
   <Damage>k__BackingField: 10
   <Animator>k__BackingField: {fileID: 652989993795888255}
   <Agent>k__BackingField: {fileID: 652989994828405459}

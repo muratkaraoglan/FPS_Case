@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class FPSController : StateMachine, IDamagable
 {
+    public event Action OnPlayerDie;
+
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private Transform _gunParentTransform;
     [SerializeField, Min(.01f)] private float _verticalSensitivity;
@@ -74,7 +77,7 @@ public class FPSController : StateMachine, IDamagable
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
-            //open panel
+            OnPlayerDie?.Invoke();
             InputReader.Instance.Controls.Disable();
         }
         _currentHealth = Mathf.Max(0, _currentHealth);

@@ -12,6 +12,7 @@ public class EnemyStateMachine : StateMachine, IDamagable
     [SerializeField] private int _exprienceAmount;
     [SerializeField] private Image _healthBarImage;
     [SerializeField] private RotationConstraint _rotationConstraint;
+    [field: SerializeField] public int Score { get; private set; }
     [field: SerializeField] public int Damage { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
@@ -45,7 +46,7 @@ public class EnemyStateMachine : StateMachine, IDamagable
             weight = 1.0f,
         };
         _rotationConstraint.SetSource(0, constraintSource);
-        
+
     }
     private void OnEnable()
     {

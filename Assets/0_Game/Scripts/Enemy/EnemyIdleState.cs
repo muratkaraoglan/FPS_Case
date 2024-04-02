@@ -15,7 +15,6 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("Idle State");
         _enemyStateMachine.Agent.stoppingDistance = 0;
         _enemyStateMachine.Agent.ResetPath();
         cancellationTokenSource = new CancellationTokenSource();

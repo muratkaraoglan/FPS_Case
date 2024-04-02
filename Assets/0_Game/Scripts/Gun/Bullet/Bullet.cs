@@ -26,11 +26,22 @@ public class Bullet : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.TryGetComponent(out IDamagable damagable))
+    //    {
+    //        damagable.TakeDamage(_damage);
+    //        UIController.Instance.OnHitEnemy();
+    //        if (!_pierce) gameObject.SetActive(false);
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.TryGetComponent(out IDamagable damagable))
+        if(collision.transform.TryGetComponent(out IDamagable damagable))
         {
             damagable.TakeDamage(_damage);
+            UIController.Instance.OnHitEnemy();
             if (!_pierce) gameObject.SetActive(false);
         }
     }

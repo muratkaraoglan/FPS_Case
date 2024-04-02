@@ -11,7 +11,6 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log("Jump State");
         Jump = true;
         HandleInput();
         ApplyMovement();

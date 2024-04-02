@@ -67,7 +67,8 @@ public class FPSController : StateMachine, IDamagable
     public bool IsGrounded()
     {
         Ray ray = new Ray(Position, Vector3.down);
-        if (Physics.Raycast(ray, .1f)) return true;
+        Debug.DrawRay(ray.origin, ray.direction);
+        if (Physics.Raycast(ray, .2f)) return true;
         return false;
     }
 
@@ -80,6 +81,7 @@ public class FPSController : StateMachine, IDamagable
             InputReader.Instance.Controls.Disable();
         }
         _currentHealth = Mathf.Max(0, _currentHealth);
+        UIController.Instance.OnPlayerTakeDamage();
         UIController.Instance.SetHealthBar(_currentHealth, PlayerStats.GetHealthValue());
     }
 

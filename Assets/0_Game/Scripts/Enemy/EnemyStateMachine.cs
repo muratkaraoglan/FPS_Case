@@ -84,6 +84,8 @@ public class EnemyStateMachine : StateMachine, IDamagable
             ExperienceSystem.Instance.GainXP(_exprienceAmount);
             SwitchState(new EnemyDeathState(this));
         }
+        if (_currentHealth < 0) damage = _currentHealth + damage;
+        UIController.Instance.ShowDamageText(damage);
     }
 
     public void CloseCanvas()

@@ -10,7 +10,6 @@ public class PlayerMovementState : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log("Move State");
         InputReader.Instance.OnJumpPerformed += OnJumpPerformed;
     }
 

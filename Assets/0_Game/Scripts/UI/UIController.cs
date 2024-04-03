@@ -45,7 +45,7 @@ public class UIController : Singleton<UIController>
 
     private void OnEnable()
     {
-        _highScore = PlayerPrefs.GetInt(StringHelper.HIGH_SCORE_PREF, 0);
+        _highScore = DataManager.Instance.GameData.HighScore;
         ChangeScoreTexts();
     }
     private void Start()
@@ -55,7 +55,8 @@ public class UIController : Singleton<UIController>
 
     private void OnDisable()
     {
-        PlayerPrefs.SetInt(StringHelper.HIGH_SCORE_PREF, _highScore);
+        DataManager.Instance.GameData.HighScore = _highScore;
+        DataManager.Instance.SaveData();
     }
 
     private void FPSController_OnPlayerDie()

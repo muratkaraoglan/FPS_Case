@@ -3614,8 +3614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a734b018cf785478cf4cc44801b2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FPSController: {fileID: 487932759}
-  AreaBound: {x: 200, y: 200}
+  <FPSController>k__BackingField: {fileID: 487932759}
+  <AreaBound>k__BackingField: {x: 200, y: 200}
 --- !u!4 &1381910438
 Transform:
   m_ObjectHideFlags: 0

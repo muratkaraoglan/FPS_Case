@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class EnemyStateMachine : StateMachine, IDamagable
 {
+    private int _currentHealth = 0;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField, Min(1)] private int _maxHealth;
     [SerializeField] private int _exprienceAmount;
@@ -14,17 +15,17 @@ public class EnemyStateMachine : StateMachine, IDamagable
     [SerializeField] private RotationConstraint _rotationConstraint;
     [field: SerializeField] public int Score { get; private set; }
     [field: SerializeField] public int Damage { get; private set; }
-    [field: SerializeField] public Animator Animator { get; private set; }
-    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
     [field: SerializeField] public float MaxAreaRadius { get; private set; }
     [field: SerializeField] public float PlayerDetectRadius { get; private set; }
     [field: SerializeField] public float AttackRadius { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
     [field: SerializeField] public float ChaseSpeed { get; private set; }
-
+    [field: SerializeField] public Animator Animator { get; private set; }
+    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
     public Vector3 Center { get; private set; }
-    private int _currentHealth = 0;
-    [HideInInspector] public bool IsDead;
+
+    [field: SerializeField] public  bool IsDead { get; private set; }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

@@ -7,7 +7,11 @@ using UnityEngine;
 public class FPSController : StateMachine, IDamagable
 {
     public event Action OnPlayerDie;
+  
+    private Vector3 _velocity;
+    private float _verticalRotation, _horizontalRotation;
 
+    [SerializeField] private int _currentHealth;
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private Transform _gunParentTransform;
     [SerializeField, Min(.01f)] private float _verticalSensitivity;
@@ -16,11 +20,7 @@ public class FPSController : StateMachine, IDamagable
     [field: SerializeField] public Transform CameraTransform;
     [field: SerializeField] public BaseGunController BaseGunController { get; private set; }
     [field: SerializeField] public PlayerStatsSO PlayerStats { get; private set; }
-    [SerializeField] private int _currentHealth;
 
-
-    private Vector3 velocity;
-    private float verticalRotation, horizontalRotation;
     private void Start()
     {
         PlayerStats.Init();
@@ -35,25 +35,25 @@ public class FPSController : StateMachine, IDamagable
     {
         float speedRate = input.Sprint ? PlayerStats.GetSprintSpeedValue() : PlayerStats.GetSpeedValue();
 
-        velocity.x = input.DirectionInput.x * speedRate;
-        velocity.z = input.DirectionInput.y * speedRate;
+        _velocity.x = input.DirectionInput.x * speedRate;
+        _velocity.z = input.DirectionInput.y * speedRate;
         if (input.Jump) _playerRigidbody.AddForce(Vector3.up * PlayerStats.GetJumpValue());
-        velocity.y = _playerRigidbody.velocity.y;
+        _velocity.y = _playerRigidbody.velocity.y;
 
         Quaternion rotationY = Quaternion.Euler(0, _gunParentTransform.rotation.eulerAngles.y, 0);
 
-        _playerRigidbody.velocity = rotationY * velocity;
+        _playerRigidbody.velocity = rotationY * _velocity;
 
     }
 
     public void ApplyRotation(CharacterInput input)
     {
-        verticalRotation -= input.LookInput.y * _verticalSensitivity;
-        horizontalRotation += input.LookInput.x * _horizontalSensitivity;
+        _verticalRotation -= input.LookInput.y * _verticalSensitivity;
+        _horizontalRotation += input.LookInput.x * _horizontalSensitivity;
 
-        verticalRotation = Mathf.Clamp(verticalRotation, -70f, 70f);
+        _verticalRotation = Mathf.Clamp(_verticalRotation, -70f, 70f);
 
-        _gunParentTransform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
+        _gunParentTransform.rotation = Quaternion.Euler(_verticalRotation, _horizontalRotation, 0f);
     }
 
     public void Fire(CharacterInput input)
@@ -67,7 +67,6 @@ public class FPSController : StateMachine, IDamagable
     public bool IsGrounded()
     {
         Ray ray = new Ray(Position, Vector3.down);
-        Debug.DrawRay(ray.origin, ray.direction);
         if (Physics.Raycast(ray, .2f)) return true;
         return false;
     }

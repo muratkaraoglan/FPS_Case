@@ -27,7 +27,6 @@ public abstract class BaseGunController : MonoBehaviour
         if (requiredAmmoCount <= magazineCount)
         {
             magazineCount -= requiredAmmoCount;
-
         }
         else
         {

@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-9)]
 public class InputReader : Singleton<InputReader>, Controls.IPlayerActions
 {
-    private Controls controls;
+    private Controls _controls;
     public Controls Controls
     {
-        get { return controls; }
+        get { return _controls; }
     }
 
     public event Action OnJumpPerformed;
@@ -24,11 +24,11 @@ public class InputReader : Singleton<InputReader>, Controls.IPlayerActions
     public bool Fire { get; private set; }
     private void OnEnable()
     {
-        if (controls != null) return;
+        if (_controls != null) return;
 
-        controls = new Controls();
-        controls.Player.SetCallbacks(this);
-        controls.Player.Enable();
+        _controls = new Controls();
+        _controls.Player.SetCallbacks(this);
+        _controls.Player.Enable();
     }
     public void OnMove(InputAction.CallbackContext context)
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 [DefaultExecutionOrder(-9)]
 public class GameManager : Singleton<GameManager>
 {
-    [field: SerializeField] public FPSController FPSController;
-    [field: SerializeField] public Vector2 AreaBound;
+    [field: SerializeField] public FPSController FPSController { get; private set; }
+    [field: SerializeField,Tooltip("Playable Area Border")] public Vector2 AreaBound { get; private set; }
 
     private void Start()
     {

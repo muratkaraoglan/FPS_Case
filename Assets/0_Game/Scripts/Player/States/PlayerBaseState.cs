@@ -28,6 +28,7 @@ public abstract class PlayerBaseState : State
     {
         controller.Move(characterInput);
     }
+
     public void ApplyRotation()
     {
         controller.ApplyRotation(characterInput);

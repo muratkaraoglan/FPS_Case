@@ -28,7 +28,6 @@ public class MP5Controller : BaseGunController
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~aimIgnoreLayerMask))
             {
                 targetPoint = hit.point;
-                print(hit.transform.name);
             }
             else
                 targetPoint = ray.GetPoint(75f);

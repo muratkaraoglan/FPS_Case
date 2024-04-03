@@ -10,7 +10,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class UIController : Singleton<UIController>
 {
+    [Header("Damage Indicator")]
     [SerializeField] private Image _damageIndicatorImage;
+    [SerializeField] private TextMeshProUGUI _damageText;
+
     [Header("Health Bar")]
     [SerializeField] private TextMeshProUGUI _healthText;
     [SerializeField] private Image _healthFillImage;
@@ -30,13 +33,12 @@ public class UIController : Singleton<UIController>
 
     [Header("Panels")]
     [SerializeField] private GameObject _gameOverPanel;
+
     [Header("Crosshair")]
     [SerializeField] private Transform _innerCrosshairTransform;
     [SerializeField] private Image _crossHairImage;
     [SerializeField] private Image _innerCrosshairImage;
 
-    [Header("Damage Text")]
-    [SerializeField] private TextMeshProUGUI _damageText;
     private int _currentScore;
     private int _highScore;
     private int _killedEnemyCount;
@@ -94,7 +96,6 @@ public class UIController : Singleton<UIController>
     }
 
     bool _isPunchScaleFinished = true;
-
     public void OnHitEnemy()
     {
         if (_isPunchScaleFinished)

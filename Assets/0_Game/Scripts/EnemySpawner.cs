@@ -8,7 +8,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField, Min(5)] private int _initialNumberOfEnemies;
     [SerializeField, Min(0)] private int _newEnemySpawnCount;
-    [SerializeField, Min(0)] private int _levelCountToSpawnNewEnemy;
+    [SerializeField, Min(0),Tooltip("How many levels to spawn a new enemy")] private int _levelCountToSpawnNewEnemy;
     [SerializeField] private Vector2 _timeIntervalForRespawnEnemy;
 
     private WaitForSeconds _waitOneSecond;

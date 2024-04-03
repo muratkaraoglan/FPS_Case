@@ -10,8 +10,8 @@ public static class StringHelper
     public static int RUN = Animator.StringToHash("Run");
     public static int ATTACK = Animator.StringToHash("Attack");
     public static int DEATH = Animator.StringToHash("Death");
-    public static string HIGH_SCORE_PREF = "HighScore";
     public static string HIGH_SCORE = "High Score: ";
     public static string CURRENT_SCORE = "Score: ";
     public static string KILLED_ENEMY_COUNT = "Killed Enemy Count: ";
+    public static string LEVEL = "Level: ";
 }

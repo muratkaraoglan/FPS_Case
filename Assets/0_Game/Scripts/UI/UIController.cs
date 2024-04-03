@@ -79,7 +79,7 @@ public class UIController : Singleton<UIController>
     {
         _xpText.SetText(currentXP + "/" + maxXP);
         _xpFillImage.fillAmount = Mathf.InverseLerp(0, maxXP, currentXP);
-        _levelText.SetText("Level: " + ExperienceSystem.Instance.CurrentLevel.ToString());
+        _levelText.SetText(StringHelper.LEVEL + ExperienceSystem.Instance.CurrentLevel.ToString());
     }
 
     public void SetScoreTexts(int score)
@@ -96,6 +96,9 @@ public class UIController : Singleton<UIController>
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    /// <summary>
+    /// Dynamic crosshair on enemy get hit
+    /// </summary>
     bool _isPunchScaleFinished = true;
     public void OnHitEnemy()
     {
@@ -105,6 +108,9 @@ public class UIController : Singleton<UIController>
         }
     }
 
+    /// <summary>
+    /// Damage text shows up when enemies hit by bullets
+    /// </summary>
     bool _isDamageTextAnimaStarted;
     Coroutine _damageTextCoroutine;
     int _targetDamageValue;
@@ -118,6 +124,9 @@ public class UIController : Singleton<UIController>
         _damageTextCoroutine = StartCoroutine(AnimateDamageText(.5f, .4f));
     }
 
+    /// <summary>
+    /// Screen glare in case of damage
+    /// </summary>
     bool _isFadeStarted = false;
     public void OnPlayerTakeDamage()
     {

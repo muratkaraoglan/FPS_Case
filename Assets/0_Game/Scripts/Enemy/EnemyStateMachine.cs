@@ -17,6 +17,7 @@ public class EnemyStateMachine : StateMachine, IDamagable
     [field: SerializeField] public int Damage { get; private set; }
     [field: SerializeField] public float MaxAreaRadius { get; private set; }
     [field: SerializeField] public float PlayerDetectRadius { get; private set; }
+    [field:SerializeField] public float PlayerDetectionAngle{ get; private set; }
     [field: SerializeField] public float AttackRadius { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
     [field: SerializeField] public float ChaseSpeed { get; private set; }
@@ -37,6 +38,15 @@ public class EnemyStateMachine : StateMachine, IDamagable
 
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, AttackRadius);//player attack radius
+
+
+        Gizmos.color = Color.blue;
+        Vector3 forwardConeDirection = Quaternion.Euler(0, PlayerDetectionAngle / 2, 0) * transform.forward * PlayerDetectRadius;
+        Vector3 backwardConeDirection = Quaternion.Euler(0, -PlayerDetectionAngle / 2, 0) * transform.forward * PlayerDetectRadius;
+
+        // Draw lines to represent the cone
+        Gizmos.DrawLine(transform.position, transform.position + forwardConeDirection);
+        Gizmos.DrawLine(transform.position, transform.position + backwardConeDirection);
     }
 
     private void Awake()

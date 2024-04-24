@@ -442,14 +442,15 @@ MonoBehaviour:
   _rotationConstraint: {fileID: 652989995403134847}
   <Score>k__BackingField: 1
   <Damage>k__BackingField: 10
-  <Animator>k__BackingField: {fileID: 652989993795888255}
-  <Agent>k__BackingField: {fileID: 652989994828405459}
   <MaxAreaRadius>k__BackingField: 25
   <PlayerDetectRadius>k__BackingField: 10
+  <PlayerDetectionAngle>k__BackingField: 60
   <AttackRadius>k__BackingField: 1.6
   <MoveSpeed>k__BackingField: 0.5
   <ChaseSpeed>k__BackingField: 3
-  IsDead: 0
+  <Animator>k__BackingField: {fileID: 652989993795888255}
+  <Agent>k__BackingField: {fileID: 652989994828405459}
+  <IsDead>k__BackingField: 0
 --- !u!65 &652989994828405420
 BoxCollider:
   m_ObjectHideFlags: 0
